@@ -1,0 +1,102 @@
+const data = await userService.login(this.user);
+console.log(JSON.parse(data.shipping_address));
+this.user.shipping_address = JSON.stringify(this.$store.state.cart.map(({image, ...keepAttrs}) => {console.log(image); return keepAttrs;})) ;
+
+{/* <template>
+    <br />
+    <div class="container">
+        <input type="file" @change="onFileChange" />
+
+        <div id="preview">
+            <img v-if="url" :src="url" />
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'testView',
+    data() {
+        return {
+            url: null,
+        };
+    },
+
+    methods:{
+        async onFileChange(e) {
+            const file = e.target.files[0];
+            this.url = URL.createObjectURL(file);
+        },
+    },
+
+    created(){
+
+    },
+};
+</script>
+<style>
+body {
+    background-color: #e2e2e2;
+}
+
+#app {
+    padding: 20px;
+}
+
+#preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#preview img {
+    max-width: 100%;
+    max-height: 500px;
+}
+</style> */}
+
+
+
+<template>
+    <br />
+    <form enctype="multipart/form-data" @submit.prevent="AddProduct">
+        <input type="file" name="productImage" @change="onFileChange" />
+        <button>Create</button>
+    </form>
+</template>
+
+<script>
+// eslint-disable-next-line no-unused-vars
+import { productService } from '@/services/product.service';
+
+export default {
+    name: 'testView',
+    data() {
+        return {
+            data: '',
+        };
+    },
+    methods: {
+        onFileChange(e) {
+            // const file = e.target.files[0];
+            // var reader = new FileReader();
+            // reader.addEventListener('load', (e) => (this.data = e.target.result));
+            // reader.readAsText(file);
+            this.data = e.target.files[0]
+        },
+        async AddProduct() {
+            console.log(this.data);
+            // var dataProduct = {
+            //     name: 'test',
+            //     price: 2,
+            //     image: this.data,
+            //     brand: 'test',
+            //     description: 'test',
+            // };
+            // await productService.create(dataProduct);
+        },
+    },
+
+    created() {},
+};
+</script>
