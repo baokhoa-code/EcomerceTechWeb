@@ -38,10 +38,16 @@ exports.findAll = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     try {
-        const userService = new UserService();
-        const user = await userService.login(req.body.email, req.body.pass);
-        if (user == undefined) return res.send({ message: 'Your email or password is incorrect' });
-        else return res.send({ message: 'Login success', ...user });
+        const userService1 = new UserService();
+        const userService2 = new UserService();
+        const checkExist = await userService1.findByEmail(req.body.email);
+        if(checkExist){
+            const user = await userService2.login(req.body.email, req.body.pass);
+            if (user == undefined) return res.send({ message: 'Your password is incorrect' });
+            else return res.send({ message: 'Login success', ...user });
+        }
+        if(checkExist == undefined || checkExist == null)
+            return res.send({ message: 'Your Email is not exist' });
     } catch (error) {
         console.log(error);
         return next(new ApiError(500, 'An error occurred while login'));
@@ -53,9 +59,9 @@ exports.findOne = async (req, res, next) => {
         const userService = new UserService();
         const user = await userService.findById(req.params.id);
         if (!user) {
-            return next(new ApiError(404, 'User not found'));
+            return res.send({ message: 'Retrieve fail'});
         }
-        return res.send(user);
+        return res.send({message: 'Retrieve success', ...user});
     } catch (error) {
         console.log(error);
         return next(new ApiError(500, `Error retrieving user with id=${req.params.id}`));
@@ -71,9 +77,9 @@ exports.update = async (req, res, next) => {
         const userService = new UserService();
         const updated = await userService.update(req.params.id, req.body);
         if (!updated) {
-            return next(new ApiError(404, 'User not found'));
+            return res.send({ message: 'User was not found' });
         }
-        return res.send({ message: 'User was updated successfully' });
+        return res.send({ message: 'Update success' });
     } catch (error) {
         console.log(error);
         return next(new ApiError(500, `Error updating user with id=${req.params.id}`));

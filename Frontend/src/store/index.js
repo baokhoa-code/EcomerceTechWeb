@@ -5,6 +5,8 @@ export default createStore({
   state() {
     return {
       uid: null,
+      utype: '',
+      uname:'',
       count: count ? parseInt(count) : 0,
       cart: cart ? JSON.parse(cart) : [],
     }
@@ -12,11 +14,23 @@ export default createStore({
   getters: {
     uid: (state) => {
       return state.uid;
-    }
+    },
+    utype: (state) => {
+      return state.utype;
+    },
+    uname: (state) => {
+      return state.uname;
+    },
   },
   mutations: {
     uid(state, uid){
       state.uid = uid;
+    },
+    utype(state, utype){
+      state.utype = utype;
+    },
+    uname(state, uname){
+      state.uname = uname;
     },
     addToCart(state, item) {
       let found = state.cart.find(product => product.id == item.id);
@@ -71,7 +85,13 @@ export default createStore({
   actions: {
     uid(context,uid){
       context.commit('uid',uid);
-    }
+    },
+    utype(context,utype){
+      context.commit('utype',utype);
+    },
+    uname(context,uname){
+      context.commit('uname',uname);
+    },
   },
   modules: {
   }

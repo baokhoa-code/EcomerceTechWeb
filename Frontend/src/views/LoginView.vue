@@ -3,14 +3,24 @@
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6">
-                    <div class="card bg-white" >
-                        <div class="card-body p-5" style="padding-left: 7rem!important;padding-right: 7rem!important;">
+                    <div class="card bg-white">
+                        <div
+                            class="card-body p-5"
+                            style="padding-left: 7rem !important; padding-right: 7rem !important"
+                        >
                             <form class="mb-3 mt-md-4" @submit.prevent="loginUser">
                                 <h2 class="fw-bold mb-2 text-uppercase" style="margin-left: 32%; padding-bottom: 22px">
                                     Welcome !
                                 </h2>
                                 <div class="alert alert-danger" v-if="messageError">
                                     {{ messageError }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="typeUser" class="form-label">User Type</label>
+                                    <select class="form-select" id="typeUser" v-model="user.type" style="width: 120px">
+                                        <option value="User" selected>User</option>
+                                        <option value="Admin">Admin</option>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email address</label>
@@ -45,9 +55,7 @@
                             <div>
                                 <p class="mb-0 text-center">
                                     Don't have an account?
-                                    <router-link to="/signin" class="text-primary fw-bold">
-                                      Sign Up
-                                    </router-link>
+                                    <router-link to="/signin" class="text-primary fw-bold"> Sign Up </router-link>
                                 </p>
                             </div>
                         </div>
@@ -60,11 +68,13 @@
 
 <script>
 import { userService } from '@/services/user.service';
+import { adminService } from '@/services/admin.service';
 export default {
     name: 'LoginView',
     data() {
         return {
             user: {
+                type: 'User',
                 email: '',
                 pass: '',
             },
@@ -84,14 +94,29 @@ export default {
                     )
                         this.messageError = 'Email is invalid';
                     else {
-                        try {
-                            const data = await userService.login(this.user);
-                            if (data.message === 'Login success') {
-                                this.$store.dispatch('uid', data.id);
-                                this.$router.push({ name: 'products' });
-                            } else this.messageError = 'Invalid email and pass';
-                        } catch (error) {
-                            this.messageError = error;
+                        if (this.user.type == 'Admin') {
+                            try {
+                                const data = await adminService.login(this.user);
+                                if (data.message === 'Login success') {
+                                    this.$store.dispatch('uid', data.id);
+                                    this.$store.dispatch('utype', this.user.type);
+                                    this.$router.push({ name: 'OrdersView' });
+                                } else this.messageError = data.message;
+                            } catch (error) {
+                                this.messageError = error;
+                            }
+                        } else {
+                            try {
+                                const data = await userService.login(this.user);
+                                if (data.message === 'Login success') {
+                                    this.$store.dispatch('uid', data.id);
+                                    this.$store.dispatch('utype', this.user.type);
+                                    this.$store.dispatch('uname', data.name);
+                                    this.$router.push({ name: 'products' });
+                                } else this.messageError = data.message;
+                            } catch (error) {
+                                this.messageError = error;
+                            }
                         }
                     }
                 }

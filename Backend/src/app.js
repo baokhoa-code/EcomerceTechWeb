@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const productController = require('./controllers/product.controller');
 const userController = require('./controllers/user.controller');
+const adminController = require('./controllers/admin.controller');
 const cartController = require('./controllers/cart.controller');
 
 const upload = multer({
@@ -37,6 +38,10 @@ app.route('/api/products/:id')
 app.route('/api/users/login').post(userController.login);
 app.route('/api/users').get(userController.findAll).post(userController.create).delete(userController.deleteAll);
 app.route('/api/users/:id').get(userController.findOne).put(userController.update).delete(userController.delete);
+
+app.route('/api/admins/login').post(adminController.login);
+app.route('/api/admins').get(adminController.findAll).post(adminController.create).delete(adminController.deleteAll);
+app.route('/api/admins/:id').get(adminController.findOne).put(adminController.update).delete(adminController.delete);
 
 app.route('/api/carts').get(cartController.findAll).post(cartController.create).delete(cartController.deleteAll);
 app.route('/api/carts/:id').get(cartController.findOne).put(cartController.update).delete(cartController.delete);

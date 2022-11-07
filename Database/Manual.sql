@@ -16,6 +16,20 @@ INSERT INTO user(name, email, pass, address, phone)
 INSERT INTO user(name, email, pass, address, phone) 
 	VALUES('user2', 'user2@GMAIL.COM','U2','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753989');
 
+CREATE TABLE admin(
+	id           		INT 	     		AUTO_INCREMENT,
+	name    			VARCHAR(100)   		NOT NULL,
+	email    			VARCHAR(200)   		UNIQUE NOT NULL,
+	pass				VARCHAR(100)		NOT NULL,
+	address				VARCHAR(400)		NOT NULL,
+	phone		  		VARCHAR(100)   		NOT NULL,
+	CONSTRAINT pk_admin PRIMARY KEY(id)
+);
+INSERT INTO admin(name, email, pass, address, phone) 
+	VALUES('admin1', 'admin1@GMAIL.COM','A1','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753988');
+INSERT INTO admin(name, email, pass, address, phone) 
+	VALUES('admin2', 'admin2@GMAIL.COM','A2','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753989');
+
 CREATE TABLE products(
 	id           		INT 	     		AUTO_INCREMENT,
 	name    			VARCHAR(100)   		NOT NULL,
