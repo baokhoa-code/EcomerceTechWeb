@@ -1,17 +1,16 @@
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const AdminService = require('../services/admin.service');
 const ApiError = require('../api-error');
 
 exports.create = async (req, res, next) => {
-    if (!req.body?.name) {
-        return next(new ApiError(400, 'Name can not be empty'));
-    }
-
     try {
         const adminService = new AdminService();
+        req.body.pass = await bcrypt.hash(req.body.pass, 8);
         const admin = await adminService.create(req.body);
         res.send({ message: 'Create success', ...admin });
     } catch (error) {
-        res.send({ message: 'Email already exist'});
+        res.send({ message: 'Email already exist' });
         console.log(error);
         return next(new ApiError(500, 'An error occurred while creating the admin'));
     }
@@ -38,16 +37,17 @@ exports.findAll = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     try {
-        const adminService1 = new AdminService();
-        const adminService2 = new AdminService();
-        const checkExist = await adminService1.findByEmail(req.body.email);
-        if(checkExist){
-            const admin = await adminService2.login(req.body.email, req.body.pass);
-            if (admin == undefined) return res.send({ message: 'Your password is incorrect' });
-            else return res.send({ message: 'Login success', ...admin });
-        }
-        if(checkExist == undefined || checkExist == null)
-            return res.send({ message: 'Your Email is not exist' });
+        const checkExist = await new AdminService().findByEmail(req.body.email);
+
+        if (checkExist) {
+            const passwordIsValid = await bcrypt.compare(req.body.pass, checkExist.pass);
+
+            if (!passwordIsValid) return res.send({ message: 'Your password is incorrect' });
+
+            const token = jwt.sign({ id: checkExist.id }, process.env.JWT_SECRET, { expiresIn: 86400 });
+
+            return res.send({ message: 'Login success', accessToken: token, ...checkExist });
+        } else return res.send({ message: 'Your Email is not exist' });
     } catch (error) {
         console.log(error);
         return next(new ApiError(500, 'An error occurred while login'));
@@ -59,9 +59,9 @@ exports.findOne = async (req, res, next) => {
         const adminService = new AdminService();
         const admin = await adminService.findById(req.params.id);
         if (!admin) {
-            return res.send({ message: 'Retrieve fail'});
+            return res.send({ message: 'Retrieve fail' });
         }
-        return res.send({message: 'Retrieve success', ...admin});
+        return res.send({ message: 'Retrieve success', ...admin });
     } catch (error) {
         console.log(error);
         return next(new ApiError(500, `Error retrieving admin with id=${req.params.id}`));

@@ -1,12 +1,17 @@
 import { createStore } from 'vuex'
+import createPersistedState from "vuex-persistedstate"
 let cart = localStorage.getItem('cart');
 let count = localStorage.getItem('count');
 export default createStore({
+  plugins: [createPersistedState({
+    storage: window.sessionStorage,
+})],
   state() {
     return {
       uid: null,
       utype: '',
       uname:'',
+      token:'',
       count: count ? parseInt(count) : 0,
       cart: cart ? JSON.parse(cart) : [],
     }
@@ -21,6 +26,9 @@ export default createStore({
     uname: (state) => {
       return state.uname;
     },
+    token: (state) => {
+      return state.token;
+    },
   },
   mutations: {
     uid(state, uid){
@@ -31,6 +39,9 @@ export default createStore({
     },
     uname(state, uname){
       state.uname = uname;
+    },
+    token(state, token){
+      state.token = token;
     },
     addToCart(state, item) {
       let found = state.cart.find(product => product.id == item.id);
@@ -91,6 +102,9 @@ export default createStore({
     },
     uname(context,uname){
       context.commit('uname',uname);
+    },
+    token(context,token){
+      context.commit('token',token);
     },
   },
   modules: {

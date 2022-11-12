@@ -1,17 +1,16 @@
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const UserService = require('../services/user.service');
 const ApiError = require('../api-error');
 
 exports.create = async (req, res, next) => {
-    if (!req.body?.name) {
-        return next(new ApiError(400, 'Name can not be empty'));
-    }
-
     try {
         const userService = new UserService();
+        req.body.pass = await bcrypt.hash(req.body.pass, 8);
         const user = await userService.create(req.body);
         res.send({ message: 'Create success', ...user });
     } catch (error) {
-        res.send({ message: 'Email already exist'});
+        res.send({ message: 'Email already exist' });
         console.log(error);
         return next(new ApiError(500, 'An error occurred while creating the user'));
     }
@@ -38,16 +37,17 @@ exports.findAll = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     try {
-        const userService1 = new UserService();
-        const userService2 = new UserService();
-        const checkExist = await userService1.findByEmail(req.body.email);
-        if(checkExist){
-            const user = await userService2.login(req.body.email, req.body.pass);
-            if (user == undefined) return res.send({ message: 'Your password is incorrect' });
-            else return res.send({ message: 'Login success', ...user });
-        }
-        if(checkExist == undefined || checkExist == null)
-            return res.send({ message: 'Your Email is not exist' });
+        const checkExist = await new UserService().findByEmail(req.body.email);
+
+        if (checkExist) {
+            const passwordIsValid = await bcrypt.compare(req.body.pass, checkExist.pass);
+
+            if (!passwordIsValid) return res.send({ message: 'Your password is incorrect' });
+
+            const token = jwt.sign({ id: checkExist.id }, process.env.JWT_SECRET, { expiresIn: 86400 });
+
+            return res.send({ message: 'Login success', accessToken: token, ...checkExist });
+        } else return res.send({ message: 'Your Email is not exist' });
     } catch (error) {
         console.log(error);
         return next(new ApiError(500, 'An error occurred while login'));
@@ -59,9 +59,9 @@ exports.findOne = async (req, res, next) => {
         const userService = new UserService();
         const user = await userService.findById(req.params.id);
         if (!user) {
-            return res.send({ message: 'Retrieve fail'});
+            return res.send({ message: 'Retrieve fail' });
         }
-        return res.send({message: 'Retrieve success', ...user});
+        return res.send({ message: 'Retrieve success', ...user });
     } catch (error) {
         console.log(error);
         return next(new ApiError(500, `Error retrieving user with id=${req.params.id}`));

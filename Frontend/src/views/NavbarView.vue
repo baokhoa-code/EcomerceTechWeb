@@ -22,7 +22,7 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/products">Products</router-link>
+                            <router-link class="nav-link" v-if="uid && utype == 'User'" to="/products">Products</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link class="nav-link" v-if="uid && utype == 'Admin'" to="/myproducts"
@@ -44,11 +44,11 @@
                             >
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <router-link class="nav-link" to="/test">test</router-link>
-                        </li>
+                        </li> -->
 
-                        <li>
+                        <li v-if="uid && utype == 'User'">
                             <router-link id="cart" to="/cart" class="cart" :data-totalitems="count">
                                 <i class="fas fa-shopping-cart"></i>
                             </router-link>
@@ -173,7 +173,7 @@
                             class="btn btn-danger"
                             style="margin-left: 227px"
                         >
-                            Cancel
+                            Close
                         </button>
                     </div>
                 </div>
@@ -206,6 +206,7 @@ export default {
         logout() {
             this.$store.dispatch('uid', null);
             this.$store.dispatch('utype', '');
+            this.$store.dispatch('token', '');
             this.$router.push({ name: 'login' });
         },
         async getData() {

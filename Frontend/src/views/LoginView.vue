@@ -100,6 +100,7 @@ export default {
                                 if (data.message === 'Login success') {
                                     this.$store.dispatch('uid', data.id);
                                     this.$store.dispatch('utype', this.user.type);
+                                    this.$store.dispatch('token', data.accessToken);
                                     this.$router.push({ name: 'OrdersView' });
                                 } else this.messageError = data.message;
                             } catch (error) {
@@ -112,6 +113,7 @@ export default {
                                     this.$store.dispatch('uid', data.id);
                                     this.$store.dispatch('utype', this.user.type);
                                     this.$store.dispatch('uname', data.name);
+                                    this.$store.dispatch('token', data.accessToken);
                                     this.$router.push({ name: 'products' });
                                 } else this.messageError = data.message;
                             } catch (error) {

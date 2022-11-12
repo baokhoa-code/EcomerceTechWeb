@@ -124,7 +124,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="close" class="btn btn-dark" data-bs-dismiss="modal">
+                    <button type="button" id="close21" class="btn btn-dark" data-bs-dismiss="modal">
                         Continue shopping
                     </button>
                     <button type="submit" class="btn btn-dark" @click="Gotocart">Go to cart</button>
@@ -185,8 +185,8 @@ export default {
             this.$store.commit('addToCart', item);
         },
         Gotocart() {
-            this.$router.push({name: "cart"});
-            document.getElementById("close").click();
+            this.$router.push({ name: 'cart' });
+            document.getElementById('close21').click();
         },
     },
 };

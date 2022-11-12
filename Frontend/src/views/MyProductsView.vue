@@ -380,7 +380,11 @@ export default {
         },
     },
     created() {
-        this.getProducts();
+        const checkType = this.$store.state.utype;
+        if(checkType == '' || checkType == 'User')
+            this.$router.push({ name: 'home' })
+        else
+            this.getProducts();
     },
 };
 </script>

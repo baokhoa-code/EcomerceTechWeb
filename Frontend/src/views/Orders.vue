@@ -51,7 +51,7 @@
                             <button
                                 type="button"
                                 v-if="item.valid == false"
-                                @click="GetData(item,'valid')"
+                                @click="GetData(item, 'valid')"
                                 class="btn btn-success"
                                 data-bs-toggle="modal"
                                 data-bs-target="#validateFromModal"
@@ -61,7 +61,7 @@
                             <button
                                 type="button"
                                 v-if="item.valid == true"
-                                @click="GetData(item,'unvalid')"
+                                @click="GetData(item, 'unvalid')"
                                 class="btn btn-success"
                                 data-bs-toggle="modal"
                                 data-bs-target="#validateFromModal"
@@ -71,7 +71,7 @@
                             <button
                                 type="button"
                                 v-if="item.valid == true"
-                                @click="GetData(item,'')"
+                                @click="GetData(item, '')"
                                 class="btn btn-success"
                                 data-bs-toggle="modal"
                                 data-bs-target="#detailFromModal"
@@ -84,7 +84,7 @@
                                 style="background: red; color: white"
                                 data-bs-toggle="modal"
                                 data-bs-target="#deleteFromModal"
-                                @click="GetData(item,'')"
+                                @click="GetData(item, '')"
                             >
                                 Delete
                             </button>
@@ -118,7 +118,9 @@
                 <div class="modal-content" style="border: black">
                     <div class="modal-header" style="background: #242121; color: white">
                         <div class="r" style="display: flex; margin: auto">
-                            <h5 class="modal-title" id="validateFromModalLable">Do you want to make this order {{ orderData.type }}?</h5>
+                            <h5 class="modal-title" id="validateFromModalLable">
+                                Do you want to make this order {{ orderData.type }}?
+                            </h5>
                         </div>
                     </div>
 
@@ -328,30 +330,35 @@ export default {
             orders: [],
             orderData: {
                 id: 0,
-                type:'',
+                type: '',
                 user_name: '',
                 user_address: '',
                 user_phone: '',
                 created_date: '',
                 cart: '',
-                cartObj:{},
+                cartObj: {},
                 total: 0,
                 item: {},
             },
         };
     },
     created() {
-        this.getOrders();
+        const checkType = this.$store.state.utype;
+        if(checkType == '' || checkType == 'User')
+            this.$router.push({ name: 'home' })           
+        else
+            this.getOrders();
     },
     methods: {
         async getOrders() {
             try {
                 const cartList = await cartService.getMany();
-                const temparray = cartList.map((item) => {
-                    return { cartObj: JSON.parse(item.cart), ...item };
-                });
-                this.orders = temparray;
-                console.log(this.orders);
+                if (cartList) {
+                    const temparray = cartList.map((item) => {
+                        return { cartObj: JSON.parse(item.cart), ...item };
+                    });
+                    this.orders = temparray;
+                }
             } catch (error) {
                 console.log(error);
             }

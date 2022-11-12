@@ -3,10 +3,12 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const bodyParser = require('body-parser');
+const errorController = require('./controllers/error.controller');
 const productController = require('./controllers/product.controller');
 const userController = require('./controllers/user.controller');
 const adminController = require('./controllers/admin.controller');
 const cartController = require('./controllers/cart.controller');
+const {verifyToken } = require('./middlewares/verifyToken.middleware');
 
 const upload = multer({
     dest: './public/'
@@ -27,34 +29,50 @@ app.get('/', (req, res) => {
 
 app.route('/api/products')
     .get(productController.findAll)
-    .post(productController.uploadAvatar.single('image'), productController.create)
-    .delete(productController.deleteAll);
+    .post([verifyToken], productController.uploadAvatar.single('image'), productController.create)
+    .delete([verifyToken], productController.deleteAll);
 
-app.route('/api/products/:id')
+app.route('/api/products/:id(\\d+)')
     .get(productController.findOne)
-    .put(productController.uploadAvatar.single('image'), productController.update)
-    .delete(productController.delete);
+    .put([verifyToken],productController.uploadAvatar.single('image'), productController.update)
+    .delete([verifyToken], productController.delete);
 
-app.route('/api/users/login').post(userController.login);
-app.route('/api/users').get(userController.findAll).post(userController.create).delete(userController.deleteAll);
-app.route('/api/users/:id').get(userController.findOne).put(userController.update).delete(userController.delete);
+app.route('/api/users/login')
+    .post(userController.login);
+app.route('/api/users')
+    .get([verifyToken], userController.findAll)
+    .post(userController.create)
+    .delete([verifyToken], userController.deleteAll);
+app.route('/api/users/:id(\\d+)')
+    .get([verifyToken], userController.findOne)
+    .put([verifyToken], userController.update)
+    .delete([verifyToken], userController.delete);
 
-app.route('/api/admins/login').post(adminController.login);
-app.route('/api/admins').get(adminController.findAll).post(adminController.create).delete(adminController.deleteAll);
-app.route('/api/admins/:id').get(adminController.findOne).put(adminController.update).delete(adminController.delete);
+app.route('/api/admins/login')
+    .post(adminController.login);
+app.route('/api/admins')
+    .get([verifyToken], adminController.findAll)
+    .post( adminController.create)
+    .delete([verifyToken], adminController.deleteAll);
+app.route('/api/admins/:id(\\d+)')
+    .get([verifyToken], adminController.findOne)
+    .put([verifyToken], adminController.update)
+    .delete([verifyToken], adminController.delete);
 
-app.route('/api/carts').get(cartController.findAll).post(cartController.create).delete(cartController.deleteAll);
-app.route('/api/carts/:id').get(cartController.findOne).put(cartController.update).delete(cartController.delete);
-app.route('/api/carts/byuser/:uid').get(cartController.findAllByUid).delete(cartController.deleteAllByUid);
+app.route('/api/carts')
+    .get([verifyToken], cartController.findAll)
+    .post([verifyToken], cartController.create)
+    .delete([verifyToken], cartController.deleteAll);
+app.route('/api/carts/:id(\\d+)')
+    .get([verifyToken], cartController.findOne)
+    .put([verifyToken], cartController.update)
+    .delete([verifyToken], cartController.delete);
+app.route('/api/carts/byuser/:uid(\\d+)')
+    .get([verifyToken], cartController.findAllByUid)
+    .delete([verifyToken], cartController.deleteAllByUid);
 
-app.use((req, res, next) => {
-    return next(new ApiError(404, 'Resource not found'));
-});
+app.use(errorController.resourceNotFound);
 
-app.use((err, req, res) => {
-    return res.status(err.statusCode || 500).json({
-        message: err.message || 'Internal Server Error',
-    });
-});
+app.use(errorController.handleError);
 
 module.exports = app;

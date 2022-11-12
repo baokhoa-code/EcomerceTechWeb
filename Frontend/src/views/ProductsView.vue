@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="close" class="btn btn-dark" data-bs-dismiss="modal">
+                    <button type="button" id="close1" class="btn btn-dark" data-bs-dismiss="modal">
                         Continue shopping
                     </button>
                     <button type="submit" class="btn btn-dark" @click="Gotocart">Order</button>
@@ -153,7 +153,7 @@ export default {
         },
         Gotocart() {
             this.$router.push({ name: 'cart' });
-            document.getElementById('close').click();
+            document.getElementById('close1').click();
         },
         addToCart(item) {
             this.$store.commit('addToCart', item);

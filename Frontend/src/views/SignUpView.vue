@@ -63,7 +63,7 @@
 
                                 <div class="d-grid">
                                     <br />
-                                    <button class="btn btn-outline-dark" type="submit">Login</button>
+                                    <button class="btn btn-outline-dark" type="submit">Sign Up</button>
                                 </div>
                             </form>
                         </div>

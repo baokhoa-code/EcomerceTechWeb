@@ -6,29 +6,29 @@ CREATE TABLE user(
 	id           		INT 	     		AUTO_INCREMENT,
 	name    			VARCHAR(100)   		NOT NULL,
 	email    			VARCHAR(200)   		UNIQUE NOT NULL,
-	pass				VARCHAR(100)		NOT NULL,
+	pass				VARCHAR(255)		NOT NULL,
 	address				VARCHAR(400)		NOT NULL,
 	phone		  		VARCHAR(100)   		NOT NULL,
 	CONSTRAINT pk_user PRIMARY KEY(id)
 );
 INSERT INTO user(name, email, pass, address, phone) 
-	VALUES('user1', 'user1@GMAIL.COM','U1','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753988');
+	VALUES('user1', 'user1@GMAIL.COM','$2a$07$FV3mi8L77vJicsjDD8AL9uJs1dymh6Kb6VVoMxUVR4PzOLm2OhO6.','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753988');
 INSERT INTO user(name, email, pass, address, phone) 
-	VALUES('user2', 'user2@GMAIL.COM','U2','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753989');
+	VALUES('user2', 'user2@GMAIL.COM','$2a$07$/QAbGFbvombziGUKjknN7eEUiwauPou5r67HUhfL7pWg.Db3VxRHy','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753989');
 
 CREATE TABLE admin(
 	id           		INT 	     		AUTO_INCREMENT,
 	name    			VARCHAR(100)   		NOT NULL,
 	email    			VARCHAR(200)   		UNIQUE NOT NULL,
-	pass				VARCHAR(100)		NOT NULL,
+	pass				VARCHAR(255)		NOT NULL,
 	address				VARCHAR(400)		NOT NULL,
 	phone		  		VARCHAR(100)   		NOT NULL,
 	CONSTRAINT pk_admin PRIMARY KEY(id)
 );
 INSERT INTO admin(name, email, pass, address, phone) 
-	VALUES('admin1', 'admin1@GMAIL.COM','A1','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753988');
+	VALUES('admin1', 'admin1@GMAIL.COM','$2a$07$noIoWpwEGmH72.2Rb6YEu.QvTwZWmnQ4b1zcc1oyiPqB67JIQSvlm','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753988');
 INSERT INTO admin(name, email, pass, address, phone) 
-	VALUES('admin2', 'admin2@GMAIL.COM','A2','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753989');
+	VALUES('admin2', 'admin2@GMAIL.COM','$2a$07$7QtPbfOIMGdHiXSgKtoHVO6Ifi6w7bSHCwbJx4ES/B6olCOspOFFa','2, TAN AN, CHAU THANH A, TINH HAU GIANG','0372753989');
 
 CREATE TABLE products(
 	id           		INT 	     		AUTO_INCREMENT,
