@@ -46,7 +46,7 @@
                                         type="address"
                                         class="form-control"
                                         aria-describedby="emailHelp"
-                                        placeholder="ex: Ghardimaou, Jendouba, 8160"
+                                        placeholder="ex: 2, TAN AN, HAU GIANG"
                                         v-model="user.address"
                                     />
                                 </div>
@@ -56,7 +56,7 @@
                                         type="tel"
                                         id="typePhone"
                                         class="form-control"
-                                        placeholder="ex: 97 384 764"
+                                        placeholder="ex: 0916456484"
                                         v-model="user.phone"
                                     />
                                 </div>

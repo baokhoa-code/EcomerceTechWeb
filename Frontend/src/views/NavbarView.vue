@@ -12,7 +12,7 @@
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <router-link to="/"><img src="../assets/dark-logo.png" width="120" height="40" /></router-link>
+            <router-link to="/"><img src="../assets/logo-full.svg" width="120" height="40" /></router-link>
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">

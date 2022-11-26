@@ -60,7 +60,7 @@ app.route('/api/admins/:id(\\d+)')
     .delete([verifyToken], adminController.delete);
 
 app.route('/api/carts')
-    .get([verifyToken], cartController.findAll)
+    .get( cartController.findAll)
     .post([verifyToken], cartController.create)
     .delete([verifyToken], cartController.deleteAll);
 app.route('/api/carts/:id(\\d+)')

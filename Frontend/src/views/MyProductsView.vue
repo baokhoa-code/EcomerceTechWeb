@@ -21,11 +21,11 @@
                         <div class="clearfix mb-3">
                             <span class="float-start badge rounded-pill bg-success">{{ item.price }}VND</span>
                         </div>
-                        <h4 class="card-title">
+                        <h4 class="card-title" style="display: inline-block;height: 60px">
                             {{ item.name }}
                         </h4>
-                        <h5 class="card-title" style="margin-top: 20px">
-                            <a target="_blank" href="#">{{ item.description }}</a>
+                        <h5 class="card-title" style="display: inline-block;height: 60px;margin-top: 20px">
+                            <a target="_blank" style="display: inline-block;height: 60px" href="#">{{ item.description }}</a>
                         </h5>
 
                         <div class="d-grid gap-2 my-4">
@@ -164,6 +164,13 @@
                                 placeholder="name"
                                 aria-label="default input example"
                                 v-model="dataProduct.name"
+                            />
+                            <input
+                                class="form-control"
+                                type="text"
+                                placeholder="Brand"
+                                aria-label="default input example"
+                                v-model="dataProduct.brand"
                             />
                             <textarea
                                 class="form-control"

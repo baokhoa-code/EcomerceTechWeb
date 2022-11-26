@@ -29,8 +29,8 @@
                                     ><a href="#" class="small text-muted text-uppercase aff-link" @click="GoToDetails(item.id)">More </a></span
                                 >
                             </div>
-                            <h4 class="card-title">
-                                <a target="_blank" @click="GoToDetails(item.id)">{{ item.name }}</a>
+                            <h4 class="card-title" style="display: inline-block;height: 60px">
+                                <a target="_blank"  @click="GoToDetails(item.id)">{{ item.name }}</a>
                             </h4>
 
                             <div class="d-grid gap-2 my-4">
@@ -52,15 +52,6 @@
                                 >
                                     Add to cart
                                 </button>
-                            </div>
-                            <div class="clearfix mb-1">
-                                <span class="float-start"
-                                    ><a href="#"><i class="fas fa-question-circle"></i></a
-                                ></span>
-
-                                <span class="float-end">
-                                    <i class="far fa-heart" style="cursor: pointer"></i>
-                                </span>
                             </div>
                         </div>
                     </div>
@@ -94,7 +85,7 @@
                                     <h5 class="card-title">{{ dataProduct.name }}</h5>
                                     <h6 class="card-text">{{ dataProduct.brand }}</h6>
                                     <br />
-                                    <h6 class="card-text">Price : {{ dataProduct.price }} VND</h6>
+                                    <h6 class="card-text">Price : {{ dataProduct.price }} $</h6>
                                     <p class="card-text">There are {{ $store.state.count }} items in your cart.</p>
                                 </div>
                             </div>

@@ -36,12 +36,12 @@
                                 <tr v-for="cartitem in item.cartObj" :key="cartitem.id">
                                     <td>{{ cartitem.name }}</td>
                                     <td>{{ cartitem.quantity }}</td>
-                                    <td>{{ cartitem.price }} VND</td>
-                                    <td>{{ cartitem.totalPrice }} VND</td>
+                                    <td>{{ cartitem.price }} $</td>
+                                    <td>{{ cartitem.totalPrice }} $</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="table-active">Total Price (shipping included)</td>
-                                    <td>{{ item.total }} VND</td>
+                                    <td>{{ item.total }} $</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -130,7 +130,7 @@
                             <h6 class="card-text">{{ orderData.user_address }}</h6>
                             <h6 class="card-text">{{ orderData.user_phone }}</h6>
                             <br />
-                            <h6 class="card-text">Total Price : {{ orderData.total }} VND</h6>
+                            <h6 class="card-text">Total Price : {{ orderData.total }} $</h6>
                         </div>
                     </div>
 
@@ -166,7 +166,7 @@
                             <h6 class="card-text">{{ orderData.user_phone }}</h6>
                             <h6 class="card-text">{{ orderData.created_date }}</h6>
                             <br />
-                            <h6 class="card-text">Total Price : {{ orderData.total }} VND</h6>
+                            <h6 class="card-text">Total Price : {{ orderData.total }} $</h6>
                         </div>
                     </div>
 
@@ -256,9 +256,9 @@
                                                             ><br />
                                                             <small>{{ item.brand }}</small>
                                                         </td>
-                                                        <td class="text-center">{{ item.price }} DT</td>
+                                                        <td class="text-center">{{ item.price }} $</td>
                                                         <td class="text-center">{{ item.quantity }}</td>
-                                                        <td class="text-right">{{ item.totalPrice }} DT</td>
+                                                        <td class="text-right">{{ item.totalPrice }} $</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -270,20 +270,20 @@
                                                 <div class="invoice-price-row">
                                                     <div class="sub-price">
                                                         <small>SUBTOTAL</small>
-                                                        <span class="text-inverse">{{ orderData.total - 7 }} VND</span>
+                                                        <span class="text-inverse">{{ orderData.total - 7 }} $</span>
                                                     </div>
                                                     <div class="sub-price">
                                                         <i class="fa fa-plus text-muted"></i>
                                                     </div>
                                                     <div class="sub-price">
                                                         <small>SHIPPING</small>
-                                                        <span class="text-inverse">7 VND</span>
+                                                        <span class="text-inverse">7 $</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="invoice-price-right">
                                                 <small>TOTAL</small>
-                                                <span class="f-w-600">{{ orderData.total }} VND</span>
+                                                <span class="f-w-600">{{ orderData.total }} $</span>
                                             </div>
                                         </div>
                                         <!-- end invoice-price -->
