@@ -43,7 +43,11 @@
                                 >Orders</router-link
                             >
                         </li>
-
+                        <li class="nav-item">
+                            <router-link class="nav-link" v-if="uid && utype == 'User'" to="/userorders"
+                                >Orders</router-link
+                            >
+                        </li>
                         <!-- <li class="nav-item">
                             <router-link class="nav-link" to="/test">test</router-link>
                         </li> -->

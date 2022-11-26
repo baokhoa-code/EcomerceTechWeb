@@ -30,10 +30,6 @@ class CartService {
 			},
 			(error) => {
 				if (error.response.status == 401) {
-
-                    // store.dispatch('uid', null);
-                    // store.dispatch('utype', '');
-                    // store.dispatch('token', '');
 					main.$router.push({ name: 'login' });
 				}
 				return error;

@@ -68,8 +68,7 @@ app.route('/api/carts/:id(\\d+)')
     .put([verifyToken], cartController.update)
     .delete([verifyToken], cartController.delete);
 app.route('/api/carts/byuser/:uid(\\d+)')
-    .get([verifyToken], cartController.findAllByUid)
-    .delete([verifyToken], cartController.deleteAllByUid);
+    .get([verifyToken], cartController.findAllByUid);
 
 app.use(errorController.resourceNotFound);
 
