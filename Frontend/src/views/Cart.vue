@@ -59,7 +59,7 @@
                                             </div>
                                         </td>
                                         <td class="align-middle border-bottom-0">
-                                            <p class="mb-0" style="font-weight: 500">{{ item.totalPrice }} VND</p>
+                                            <p class="mb-0" style="font-weight: 500">${{ item.totalPrice }}</p>
                                         </td>
                                         <td class="align-middle border-bottom-0">
                                             <img

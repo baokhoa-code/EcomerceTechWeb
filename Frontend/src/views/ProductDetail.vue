@@ -37,7 +37,7 @@
                             <div class="r" style="display: flex; margin: auto">
                                 <span class="fw-bold">Total: </span>
                                 <div class="ratings d-flex flex-row align-items-center">
-                                <span style="color: #005eb8; font-size: 1.1rem;">{{ product.totalPrice }} VND</span>
+                                <span style="color: #005eb8; font-size: 1.1rem;">${{ product.totalPrice }}</span>
                             </div>
                         </div>
                         </div>
@@ -116,7 +116,7 @@
                                     <h5 class="card-title">{{ product.name }}</h5>
                                     <h6 class="card-text">{{ product.brand }}</h6>
                                     <br />
-                                    <h6 class="card-text">Price : {{ product.price }} VND</h6>
+                                    <h6 class="card-text">Price : ${{ product.price }} </h6>
                                     <p class="card-text">There are {{ $store.state.count }} items in your cart.</p>
                                 </div>
                             </div>
