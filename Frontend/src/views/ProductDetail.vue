@@ -26,7 +26,7 @@
                             <h3>{{ product.name }}</h3>
                         </div>
 
-                        <h3 style="color: #005eb8; font-size: xx-large">{{ product.price }} VND</h3>
+                        <h3 style="color: #005eb8; font-size: xx-large">${{ product.price }} </h3>
                         <div class="mt-2 pr-3 content" style="margin-top: 1rem !important">
                             <p style="font-size: 16px">
                                 {{ product.description }}

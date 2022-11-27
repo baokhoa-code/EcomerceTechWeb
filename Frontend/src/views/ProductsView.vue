@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <div class="clearfix mb-3">
-                                <span class="float-start badge rounded-pill bg-success">{{ item.price }}VND</span>
+                                <span class="float-start badge rounded-pill bg-success">${{ item.price }}</span>
 
                                 <span class="float-end"
                                     ><a href="#" class="small text-muted text-uppercase aff-link" @click="GoToDetails(item.id)">More </a></span

@@ -19,7 +19,7 @@
                     </div>
                     <div class="card-body">
                         <div class="clearfix mb-3">
-                            <span class="float-start badge rounded-pill bg-success">{{ item.price }}VND</span>
+                            <span class="float-start badge rounded-pill bg-success">${{ item.price }}</span>
                         </div>
                         <h4 class="card-title" style="display: inline-block;height: 60px">
                             {{ item.name }}
