@@ -3,10 +3,7 @@
     <div>
         <section class="h-100 h-custom">
             <div class="container h-100 py-5">
-                <div
-                    v-if="$store.state.cart.length > 0"
-                    class="row d-flex justify-content-center align-items-center h-100"
-                >
+                <div v-if="$store.state.cart.length > 0" class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col">
                         <div class="table-responsive">
                             <table class="table">
@@ -22,12 +19,8 @@
                                     <tr v-for="item in $store.state.cart" :key="item.id">
                                         <th scope="row" class="border-bottom-0">
                                             <div class="d-flex align-items-center">
-                                                <img
-                                                    :src="item.image"
-                                                    class="img-fluid rounded-3"
-                                                    style="width: 83px; height: 112px"
-                                                    alt="Book"
-                                                />
+                                                <img :src="item.image" class="img-fluid rounded-3"
+                                                    style="width: 83px; height: 112px" alt="Book" />
                                                 <div class="flex-column ms-4">
                                                     <p class="mb-2">
                                                         {{ item.name }}
@@ -43,15 +36,9 @@
                                                     <i class="fas fa-minus"></i>
                                                 </button>
 
-                                                <input
-                                                    id="form1"
-                                                    min="1"
-                                                    name="quantity"
-                                                    :value="item.quantity"
-                                                    type="number"
-                                                    class="form-control form-control-sm"
-                                                    style="width: 53px"
-                                                />
+                                                <input id="form1" min="1" name="quantity" :value="item.quantity"
+                                                    type="number" class="form-control form-control-sm"
+                                                    style="width: 53px" />
 
                                                 <button class="btn btn-link px-2" @click="addToCart(item)">
                                                     <i class="fas fa-plus"></i>
@@ -62,12 +49,8 @@
                                             <p class="mb-0" style="font-weight: 500">${{ item.totalPrice }}</p>
                                         </td>
                                         <td class="align-middle border-bottom-0">
-                                            <img
-                                                class="mb-0"
-                                                style="height: 25px"
-                                                src="../assets/icons8_close_50px.png"
-                                                @click="removeFromCart(item)"
-                                            />
+                                            <img class="mb-0" style="height: 25px" src="../assets/icons8_close_50px.png"
+                                                @click="removeFromCart(item)" />
                                         </td>
                                     </tr>
                                 </tbody>
@@ -95,25 +78,15 @@
                                         <p class="mb-2">{{ totalPrice }}VND</p>
                                     </div>
 
-                                    <button
-                                        @click="CheckOutProducts"
-                                        v-if="uid"
-                                        type="button"
-                                        class="btn btn-primary btn-block btn-lg"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal"
-                                    >
+                                    <button @click="CheckOutProducts" v-if="uid" type="button"
+                                        class="btn btn-primary btn-block btn-lg" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
                                         <div class="d-flex justify-content-between">
                                             <span>Checkout</span>
                                         </div>
                                     </button>
-                                    <button
-                                        v-if="uid == null"
-                                        type="button"
-                                        class="btn btn-primary btn-block btn-lg"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal1"
-                                    >
+                                    <button v-if="uid == null" type="button" class="btn btn-primary btn-block btn-lg"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal1">
                                         <div class="d-flex justify-content-between">
                                             <span>Checkout</span>
                                         </div>
@@ -158,11 +131,8 @@
                 <div class="modal-body" style="display: flex">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img
-                                src="../assets/time-check-symbol_ready_timer_checkmark_countdown_compliance_done_reminder-512.webp"
-                                class="img-fluid rounded-start"
-                                alt="..."
-                            />
+                            <img src="../assets/time-check-symbol_ready_timer_checkmark_countdown_compliance_done_reminder-512.webp"
+                                class="img-fluid rounded-start" alt="..." />
                         </div>
                         <div class="col">
                             <p class="card-text" style="margin-top: 62px; margin-left: 46px">
@@ -296,6 +266,6 @@ export default {
             document.getElementById('close1').click();
         },
     },
-    created() {},
+    created() { },
 };
 </script>

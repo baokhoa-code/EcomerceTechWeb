@@ -58,10 +58,10 @@
                     <div class="modal-body">
                         <!-- form start here -->
                         <form @submit.prevent="AddProduct" enctype="multipart/form-data">
-                            <input class="form-control" type="text" placeholder="name"
-                                aria-label="default input example" v-model="addProduct.name" />
-                            <input class="form-control" type="text" placeholder="Brand"
-                                aria-label="default input example" v-model="addProduct.brand" />
+                            <input class="form-control" type="text" placeholder="name" aria-label="default input example"
+                                v-model="addProduct.name" />
+                            <input class="form-control" type="text" placeholder="Brand" aria-label="default input example"
+                                v-model="addProduct.brand" />
                             <div class="input-group">
                                 <input class="form-control" type="number" placeholder="Price"
                                     aria-label="Dollar amount (with dot and two decimal places)"
@@ -107,10 +107,10 @@
                     <div class="modal-body">
                         <!-- form start here -->
                         <form @submit.prevent="UpdateProduct">
-                            <input class="form-control" type="text" placeholder="name"
-                                aria-label="default input example" v-model="dataProduct.name" />
-                            <input class="form-control" type="text" placeholder="Brand"
-                                aria-label="default input example" v-model="dataProduct.brand" />
+                            <input class="form-control" type="text" placeholder="name" aria-label="default input example"
+                                v-model="dataProduct.name" />
+                            <input class="form-control" type="text" placeholder="Brand" aria-label="default input example"
+                                v-model="dataProduct.brand" />
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                                 placeholder="Description" v-model="dataProduct.description"></textarea>
                             <input class="form-control" lang="en" type="file" ref="file2" @change="onchanged2" />
