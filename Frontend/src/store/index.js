@@ -5,13 +5,13 @@ let count = localStorage.getItem('count');
 export default createStore({
   plugins: [createPersistedState({
     storage: window.sessionStorage,
-})],
+  })],
   state() {
     return {
       uid: null,
       utype: '',
-      uname:'',
-      token:'',
+      uname: '',
+      token: '',
       count: count ? parseInt(count) : 0,
       cart: cart ? JSON.parse(cart) : [],
     }
@@ -31,16 +31,16 @@ export default createStore({
     },
   },
   mutations: {
-    uid(state, uid){
+    uid(state, uid) {
       state.uid = uid;
     },
-    utype(state, utype){
+    utype(state, utype) {
       state.utype = utype;
     },
-    uname(state, uname){
+    uname(state, uname) {
       state.uname = uname;
     },
-    token(state, token){
+    token(state, token) {
       state.token = token;
     },
     addToCart(state, item) {
@@ -94,20 +94,20 @@ export default createStore({
   }
   ,
   actions: {
-    uid(context,uid){
-      context.commit('uid',uid);
+    uid(context, uid) {
+      context.commit('uid', uid);
     },
-    utype(context,utype){
-      context.commit('utype',utype);
+    utype(context, utype) {
+      context.commit('utype', utype);
     },
-    uname(context,uname){
-      context.commit('uname',uname);
+    uname(context, uname) {
+      context.commit('uname', uname);
     },
-    token(context,token){
-      context.commit('token',token);
+    token(context, token) {
+      context.commit('token', token);
     },
   },
   modules: {
   }
-  
+
 })

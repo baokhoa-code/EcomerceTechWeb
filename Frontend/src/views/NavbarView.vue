@@ -1,15 +1,8 @@
 <template>
     <nav class="navbar navbar-expand-lg" style="background: #39b5ff">
         <div class="container">
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarTogglerDemo02"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <router-link to="/"><img src="../assets/logo-full.svg" width="120" height="40" /></router-link>
@@ -17,17 +10,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
                         <li class="nav-item">
-                            <router-link class="nav-link active" style="color: white" aria-current="page" to="/"
-                                >Home</router-link
-                            >
+                            <router-link class="nav-link active" style="color: white" aria-current="page"
+                                to="/">Home</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" v-if="uid && utype == 'User'" to="/products">Products</router-link>
+                            <router-link class="nav-link" v-if="uid && utype == 'User'"
+                                to="/products">Products</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" v-if="uid && utype == 'Admin'" to="/myproducts"
-                                >My Products</router-link
-                            >
+                            <router-link class="nav-link" v-if="uid && utype == 'Admin'" to="/myproducts">My
+                                Products</router-link>
                         </li>
 
                         <li class="nav-item">
@@ -39,14 +31,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <router-link class="nav-link" v-if="uid && utype == 'Admin'" to="/orders"
-                                >Orders</router-link
-                            >
+                            <router-link class="nav-link" v-if="uid && utype == 'Admin'" to="/orders">Orders</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" v-if="uid && utype == 'User'" to="/userorders"
-                                >Orders</router-link
-                            >
+                            <router-link class="nav-link" v-if="uid && utype == 'User'"
+                                to="/userorders">Orders</router-link>
                         </li>
                         <!-- <li class="nav-item">
                             <router-link class="nav-link" to="/test">test</router-link>
@@ -60,35 +49,19 @@
                     </ul>
                     <ul class="navbar-nav" v-if="uid">
                         <li class="nav-item dropdown">
-                            <a
-                                class="nav-link dropdown-toggle fas fa-user"
-                                href="#"
-                                id="navbarDropdown"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                                style="width: 100%"
-                            >
-                                <span
-                                    style="
-                                        margin-left: 10px;
-                                        margin-bottom: 15px;
-                                        font-size: 0.7rem;
-                                        letter-spacing: 1px;
-                                    "
-                                    >Hello, {{ utype }}: {{ uname }}</span
-                                >
+                            <a class="nav-link dropdown-toggle fas fa-user" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%">
+                                <span style="
+                                            margin-left: 10px;
+                                            margin-bottom: 15px;
+                                            font-size: 0.7rem;
+                                            letter-spacing: 1px;
+                                        ">Hello, {{ utype }}: {{ uname }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a
-                                        class="dropdown-item"
-                                        href="#"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#informodel"
-                                        @click="getData()"
-                                        >Information</a
-                                    >
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#informodel"
+                                        @click="getData()">Information</a>
                                 </li>
                                 <li><a class="dropdown-item" style="cursor: pointer" v-on:click="logout">Logout</a></li>
                             </ul>
@@ -117,66 +90,36 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Name</label>
-                            <input
-                                type="name"
-                                class="form-control"
-                                aria-describedby="emailHelp"
-                                placeholder="Your Name"
-                                v-model="userData.name"
-                            />
+                            <input type="name" class="form-control" aria-describedby="emailHelp" placeholder="Your Name"
+                                v-model="userData.name" />
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input
-                                type="email"
-                                class="form-control"
-                                id="email"
-                                placeholder="name@example.com"
-                                v-model="userData.email"
-                            />
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                                v-model="userData.email" />
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="password"
-                                placeholder="*******"
-                                v-model="userData.pass"
-                            />
+                            <input type="password" class="form-control" id="password" placeholder="*******"
+                                v-model="userData.pass" />
                         </div>
                         <div class="mb-3">
                             <label for="adress" class="form-label">Shipping Address</label>
-                            <input
-                                type="address"
-                                class="form-control"
-                                aria-describedby="emailHelp"
-                                placeholder="ex: Ghardimaou, Jendouba, 8160"
-                                v-model="userData.address"
-                            />
+                            <input type="address" class="form-control" aria-describedby="emailHelp"
+                                placeholder="ex: Ghardimaou, Jendouba, 8160" v-model="userData.address" />
                         </div>
                         <div class="form-outline">
                             <label class="form-label" for="typePhone">Phone number</label>
-                            <input
-                                type="tel"
-                                id="typePhone"
-                                class="form-control"
-                                placeholder="ex: 97 384 764"
-                                v-model="userData.phone"
-                            />
+                            <input type="tel" id="typePhone" class="form-control" placeholder="ex: 97 384 764"
+                                v-model="userData.phone" />
                         </div>
                     </div>
                     <div class="modal-footer" style="justify-content: flex-start">
                         <button type="button" class="btn btn-info" style="color: white" @click="UpdateUser()">
                             Change Infomation
                         </button>
-                        <button
-                            type="button"
-                            id="close"
-                            data-bs-dismiss="modal"
-                            class="btn btn-danger"
-                            style="margin-left: 227px"
-                        >
+                        <button type="button" id="close" data-bs-dismiss="modal" class="btn btn-danger"
+                            style="margin-left: 227px">
                             Close
                         </button>
                     </div>
@@ -247,10 +190,10 @@ export default {
         async UpdateUser() {
             var data1;
             try {
-                if(this.userData.type == 'Admin')
-                    data1 = await adminService.update(this.userData.id,this.userData);
+                if (this.userData.type == 'Admin')
+                    data1 = await adminService.update(this.userData.id, this.userData);
                 else
-                    data1 = await userService.update(this.userData.id,this.userData);
+                    data1 = await userService.update(this.userData.id, this.userData);
                 if (data1.message === 'Update success') {
                     this.messageSucess = data1.message;
                 } else this.messageError = data1.message;
@@ -259,9 +202,9 @@ export default {
             }
         },
     },
-    mounted() {},
-    watch() {},
-    created() {},
+    mounted() { },
+    watch() { },
+    created() { },
     computed: {
         uid() {
             return this.$store.state.uid;

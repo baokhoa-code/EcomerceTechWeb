@@ -20,7 +20,10 @@ const routes = [
         path: '/products/:id',
         name: 'details',
         component: () => import('../views/ProductDetail.vue'),
-        props: (route) => ({ id: parseInt(route.params.id) }),
+        props: (route) => {
+            console.log(route);
+            // ({ id: parseInt(route.params.id) })
+        },
     },
     {
         path: '/login',

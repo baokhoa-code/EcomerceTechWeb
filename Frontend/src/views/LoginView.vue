@@ -4,10 +4,7 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6">
                     <div class="card bg-white">
-                        <div
-                            class="card-body p-5"
-                            style="padding-left: 7rem !important; padding-right: 7rem !important"
-                        >
+                        <div class="card-body p-5" style="padding-left: 7rem !important; padding-right: 7rem !important">
                             <form class="mb-3 mt-md-4" @submit.prevent="loginUser">
                                 <h2 class="fw-bold mb-2 text-uppercase" style="margin-left: 32%; padding-bottom: 22px">
                                     Welcome !
@@ -24,30 +21,17 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email address</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="email"
-                                        placeholder="name@example.com"
-                                        v-model="user.email"
-                                    />
+                                    <input type="text" class="form-control" id="email" placeholder="name@example.com"
+                                        v-model="user.email" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input
-                                        type="password"
-                                        class="form-control"
-                                        id="pass"
-                                        placeholder="*******"
-                                        v-model="user.pass"
-                                    />
+                                    <input type="password" class="form-control" id="pass" placeholder="*******"
+                                        v-model="user.pass" />
                                 </div>
                                 <div class="d-grid">
-                                    <button
-                                        class="btn btn-outline-dark"
-                                        type="submit"
-                                        style="width: 200px; margin-left: auto; margin-right: auto"
-                                    >
+                                    <button class="btn btn-outline-dark" type="submit"
+                                        style="width: 200px; margin-left: auto; margin-right: auto">
                                         Login
                                     </button>
                                 </div>
@@ -69,6 +53,7 @@
 <script>
 import { userService } from '@/services/user.service';
 import { adminService } from '@/services/admin.service';
+
 export default {
     name: 'LoginView',
     data() {

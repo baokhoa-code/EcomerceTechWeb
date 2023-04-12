@@ -25,26 +25,18 @@
                             {{ item.name }}
                         </h4>
                         <h5 class="card-title" style="display: inline-block;height: 60px;margin-top: 20px">
-                            <a target="_blank" style="display: inline-block;height: 60px" href="#">{{ item.description }}</a>
+                            <a target="_blank" style="display: inline-block;height: 60px" href="#">{{
+                                item.description
+                            }}</a>
                         </h5>
 
                         <div class="d-grid gap-2 my-4">
-                            <button
-                                @click="getData(item)"
-                                type="button"
-                                class="btn btn-info bold-btn"
-                                data-bs-toggle="modal"
-                                data-bs-target="#update"
-                            >
+                            <button @click="getData(item)" type="button" class="btn btn-info bold-btn"
+                                data-bs-toggle="modal" data-bs-target="#update">
                                 Update
                             </button>
-                            <button
-                                @click="getData(item)"
-                                type="button"
-                                class="btn btn-danger bold-btn"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delete"
-                            >
+                            <button @click="getData(item)" type="button" class="btn btn-danger bold-btn"
+                                data-bs-toggle="modal" data-bs-target="#delete">
                                 Delete
                             </button>
                         </div>
@@ -54,64 +46,33 @@
             </div>
         </div>
         <!-- Add modal -->
-        <div
-            class="modal fade"
-            id="addFromModal"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
-        >
+        <div class="modal fade" id="addFromModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Add Product</h5>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            @click="clear"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        ></button>
+                        <button type="button" class="btn-close" @click="clear" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <!-- form start here -->
                         <form @submit.prevent="AddProduct" enctype="multipart/form-data">
-                            <input
-                                class="form-control"
-                                type="text"
-                                placeholder="name"
-                                aria-label="default input example"
-                                v-model="addProduct.name"
-                            />
-                            <input
-                                class="form-control"
-                                type="text"
-                                placeholder="Brand"
-                                aria-label="default input example"
-                                v-model="addProduct.brand"
-                            />
+                            <input class="form-control" type="text" placeholder="name"
+                                aria-label="default input example" v-model="addProduct.name" />
+                            <input class="form-control" type="text" placeholder="Brand"
+                                aria-label="default input example" v-model="addProduct.brand" />
                             <div class="input-group">
-                                <input
-                                    class="form-control"
-                                    type="number"
-                                    placeholder="Price"
+                                <input class="form-control" type="number" placeholder="Price"
                                     aria-label="Dollar amount (with dot and two decimal places)"
-                                    v-model="addProduct.price"
-                                />
+                                    v-model="addProduct.price" />
                                 <span class="input-group-text">$</span>
                             </div>
 
                             <input class="form-control" lang="en" type="file" ref="file1" @change="onchanged1" />
 
-                            <textarea
-                                class="form-control"
-                                id="exampleFormControlTextarea1"
-                                rows="3"
-                                placeholder="Description"
-                                v-model="addProduct.description"
-                            ></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                placeholder="Description" v-model="addProduct.description"></textarea>
                             <div class="alert alert-success" v-if="messageSuccess">
                                 {{ messageSuccess }}
                             </div>
@@ -134,63 +95,30 @@
             </div>
         </div>
         <!-- Modal 2 (update) -->
-        <div
-            class="modal fade"
-            id="update"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
-        >
+        <div class="modal fade" id="update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Update Product</h5>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            @click="clear"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        ></button>
+                        <button type="button" class="btn-close" @click="clear" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <!-- form start here -->
                         <form @submit.prevent="UpdateProduct">
-                            <input
-                                class="form-control"
-                                type="text"
-                                placeholder="name"
-                                aria-label="default input example"
-                                v-model="dataProduct.name"
-                            />
-                            <input
-                                class="form-control"
-                                type="text"
-                                placeholder="Brand"
-                                aria-label="default input example"
-                                v-model="dataProduct.brand"
-                            />
-                            <textarea
-                                class="form-control"
-                                id="exampleFormControlTextarea1"
-                                rows="3"
-                                placeholder="Description"
-                                v-model="dataProduct.description"
-                            ></textarea>
+                            <input class="form-control" type="text" placeholder="name"
+                                aria-label="default input example" v-model="dataProduct.name" />
+                            <input class="form-control" type="text" placeholder="Brand"
+                                aria-label="default input example" v-model="dataProduct.brand" />
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                placeholder="Description" v-model="dataProduct.description"></textarea>
                             <input class="form-control" lang="en" type="file" ref="file2" @change="onchanged2" />
                             <div id="preview">
                                 <img :src="url" style="width: 100px; height: 100px" />
                             </div>
-                            <input
-                                class="form-control"
-                                type="number"
-                                pla
-                                ceholder="price"
-                                aria-label="default input example"
-                                v-model="dataProduct.price"
-                            />
+                            <input class="form-control" type="number" pla ceholder="price"
+                                aria-label="default input example" v-model="dataProduct.price" />
                             <div class="alert alert-success" v-if="messageUpdateSuccess">
                                 {{ messageUpdateSuccess }}
                             </div>
@@ -210,15 +138,8 @@
             </div>
         </div>
         <!-- Modal 3 (delete) -->
-        <div
-            class="modal fade"
-            id="delete"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
-        >
+        <div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -355,7 +276,7 @@ export default {
             }
             this.getProducts();
         },
-        async DeleteProduct(pid){
+        async DeleteProduct(pid) {
             try {
                 await productService.delete(pid);
                 document.getElementById('close5').click();
@@ -388,7 +309,7 @@ export default {
     },
     created() {
         const checkType = this.$store.state.utype;
-        if(checkType == '' || checkType == 'User')
+        if (checkType == '' || checkType == 'User')
             this.$router.push({ name: 'home' })
         else
             this.getProducts();
@@ -399,6 +320,7 @@ export default {
 .form-control {
     margin-bottom: 16px;
 }
+
 .input-group-text {
     margin-bottom: 16px;
 }
@@ -520,12 +442,14 @@ export default {
     -webkit-backdrop-filter: blur(0px);
     border-radius: 0.5 rem;
 }
+
 .bold-btn {
     font-size: 1rem;
     font-weight: 500;
     text-transform: uppercase;
     padding: 5px 50px 5px 50px;
 }
+
 .box .btn {
     font-size: 1.5rem;
 }
@@ -535,6 +459,7 @@ export default {
         padding: 5px 40px 5px 40px;
     }
 }
+
 @media (max-width: 250px) {
     .btn {
         padding: 5px 30px 5px 30px;
@@ -552,6 +477,7 @@ export default {
     /* box-shadow: -1px 6px 19px rgba(247, 129, 10, 0.25); */
     border-radius: 1rem;
 }
+
 .btn-info {
     background: #08b21d;
     color: #ffffff;
@@ -561,6 +487,7 @@ export default {
     outline: 0;
     border-radius: 1rem;
 }
+
 .btn-danger {
     background: #ff0000;
     color: #ffffff;
@@ -570,26 +497,32 @@ export default {
     outline: 0;
     border-radius: 1rem;
 }
+
 .btn-sucess {
     border-radius: 1rem;
 }
+
 .btn-secondary {
     border-radius: 1rem;
 }
+
 .btn-warning:hover {
     background: var(--btnbghover);
     color: var(--btnfontcolorhover);
     /* box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35); */
 }
-.btn-check:focus + .btn-warning,
+
+.btn-check:focus+.btn-warning,
 .btn-warning:focus {
     background: var(--btnbghover);
     color: var(--btnfontcolorhover);
     /* box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35); */
 }
+
 .btn-warning:active:focus {
     box-shadow: 0 0 0 0.25rem var(--btnactivefs);
 }
+
 .btn-warning:active {
     background: var(--btnbghover);
     color: var(--btnfontcolorhover);
@@ -603,6 +536,7 @@ export default {
     background-color: var(--btnbg) !important;
     color: var(--btnfontcolor) !important;
 }
+
 .bg-danger {
     font-size: 1rem;
 }
@@ -627,6 +561,7 @@ export default {
 .fa-heart:before {
     color: crimson;
 }
+
 .fa-chevron-circle-right:before {
     color: darkgray;
 }

@@ -15,8 +15,6 @@ class ProductService {
         });
 
         this.api.interceptors.request.use((config) => {
-
-
 			const uid = store.getters.uid;
             const token = store.getters.token;
 			if (uid && token) {
@@ -49,8 +47,6 @@ class ProductService {
         });
 
         this.ImageApi.interceptors.request.use((config) => {
-
-
 			const uid = store.getters.uid;
             const token = store.getters.token;
 			if (uid && token) {
@@ -76,7 +72,6 @@ class ProductService {
 		);
 
     }
-
 
     async getMany() {
         return (await this.api.get(this.baseUrl)).data;

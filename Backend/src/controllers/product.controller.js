@@ -39,7 +39,7 @@ exports.create = async (req, res, next) => {
     
     try {
         const prodcutService = new ProductService()
-        const data ={
+        const data = {
             name: req.body.name,
             brand: req.body.brand,
             description: req.body.description,
