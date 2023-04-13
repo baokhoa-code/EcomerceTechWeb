@@ -2,12 +2,11 @@ const CartService = require('../services/cart.service')
 const ApiError = require('../api-error')
 
 exports.create = async (req, res, next) => {
-
     try {
         const cartService = new CartService()
         const cart = await cartService.create(req.body)
-        return res.send({message: 'Create success',...cart})
-    } catch(error) {
+        return res.send({ message: 'Create success', ...cart })
+    } catch (error) {
         console.log(error)
         return next(
             new ApiError(500, 'An error occurred while creating the cart')
@@ -29,7 +28,7 @@ exports.findAll = async (req, res, next) => {
     } catch (error) {
         console.log(error)
         return next(
-            new ApiError( 500, 'An error occurred while retrieving carts')
+            new ApiError(500, 'An error occurred while retrieving carts')
         )
     }
 
@@ -50,7 +49,7 @@ exports.findAllByUid = async (req, res, next) => {
     } catch (error) {
         console.log(error)
         return next(
-            new ApiError( 500, 'An error occurred while retrieving carts')
+            new ApiError(500, 'An error occurred while retrieving carts')
         )
     }
 
@@ -77,7 +76,7 @@ exports.findOne = async (req, res, next) => {
 }
 
 exports.update = async (req, res, next) => {
-    if (Object.keys(req.body).length === 0){
+    if (Object.keys(req.body).length === 0) {
         return next(new ApiError(400, 'Data to update can not be empty'))
     }
 
@@ -87,7 +86,7 @@ exports.update = async (req, res, next) => {
         if (!updated) {
             return next(new ApiError(404, 'Cart not found'))
         }
-        return res.send({message: 'Cart was updated successfully'})
+        return res.send({ message: 'Cart was updated successfully' })
     } catch (error) {
         console.log(error)
         return next(
@@ -100,10 +99,10 @@ exports.delete = async (req, res, next) => {
     try {
         const cartService = new CartService()
         const deleted = await cartService.delete(req.params.id)
-        if(!deleted){
+        if (!deleted) {
             return next(new ApiError(404, 'Cart not found'))
         }
-        return res.send({ message: 'Cart was deleted successfully'})
+        return res.send({ message: 'Cart was deleted successfully' })
     } catch (error) {
         console.log(error)
         return next(
@@ -116,32 +115,32 @@ exports.delete = async (req, res, next) => {
 }
 
 exports.deleteAll = async (req, res, next) => {
-   try {
+    try {
         const cartService = new CartService()
         const deleted = await cartService.deleteAll()
         return res.send({
             message: `${deleted} Carts were deleted successfully`
         })
-   } catch (error) {
+    } catch (error) {
         console.log(error)
         return next(
             new ApiError(500, 'An error occurred while removing all carts')
         )
-   }
+    }
 }
 
 exports.deleteAllByUid = async (req, res, next) => {
     try {
-         const cartService = new CartService()
-         const uid = req.params.uid
-         const deleted = await cartService.deleteAllByUid(uid)
-         return res.send({
-             message: 'Carts were deleted successfully'
-         })
+        const cartService = new CartService()
+        const uid = req.params.uid
+        const deleted = await cartService.deleteAllByUid(uid)
+        return res.send({
+            message: 'Carts were deleted successfully'
+        })
     } catch (error) {
-         console.log(error)
-         return next(
-             new ApiError(500, 'An error occurred while removing all carts')
-         )
+        console.log(error)
+        return next(
+            new ApiError(500, 'An error occurred while removing all carts')
+        )
     }
- }
+}
